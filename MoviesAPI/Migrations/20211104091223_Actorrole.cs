@@ -2,23 +2,20 @@
 
 namespace MoviesAPI.Migrations
 {
-    public partial class AdminRole : Migration
+    public partial class Actorrole : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"
             Insert into AspNetRoles (Id, [name], [NormalizedName])
-            values ('af207a62-e683-48d6-9023-6acc163f7dd4', 'Admin', 'Admin')
+            values ('4a6755e9-18cd-4fc2-a183-28f155e6dfe0', 'Actor', 'Actor')
             ");
-            
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"delete AspNetRoles
-             where id = 'af207a62-e683-48d6-9023-6acc163f7dd4'");
-           
+            add where id = '4a6755e9-18cd-4fc2-a183-28f155e6dfe0'");
         }
-        
     }
 }
