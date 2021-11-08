@@ -41,7 +41,7 @@ namespace MoviesAPI
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAPIRequestIO",
-                    builder => builder.WithOrigins("https://www.apirequest.io").WithMethods("GET", "POST").AllowAnyHeader());
+                    builder => builder.WithOrigins("https://localhost:4200/").WithMethods("GET", "POST").AllowAnyOrigin().AllowAnyHeader());
             });
 
             services.AddDataProtection();
