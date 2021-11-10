@@ -15,11 +15,13 @@ using System.Linq.Dynamic.Core;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Cors;
 
 namespace MoviesAPI.Controllers
 {
     [ApiController]
     [Route("api/movies")]
+    [EnableCors(PolicyName = "AllowAPIRequestIO")]
     public class MoviesController : ControllerBase
     {
         private readonly ApplicationDbContext context;
@@ -40,7 +42,8 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IndexMoviePageDTO>> Get()
+        [EnableCors(PolicyName = "AllowAPIRequestIO")]
+        public async Task<ActionResult<List<MovieDTO>>> Get()
         {
             var top = 6;
             var today = DateTime.Today;
@@ -55,14 +58,15 @@ namespace MoviesAPI.Controllers
                 .Take(top)
                 .ToListAsync();
 
-            var result = new IndexMoviePageDTO();
-            result.InTheaters = mapper.Map<List<MovieDTO>>(inTheaters);
-            result.UpcomingReleases = mapper.Map<List<MovieDTO>>(upcomingReleases);
+            var result = new List<MovieDTO>();
+            result = mapper.Map<List<MovieDTO>>(inTheaters);
+           // result.UpcomingReleases = mapper.Map<List<MovieDTO>>(upcomingReleases);
 
             return result;
         }
 
         [HttpGet("filter")]
+        [EnableCors(PolicyName = "AllowAPIRequestIO")]
         public async Task<ActionResult<List<MovieDTO>>> Filter([FromQuery] FilterMoviesDTO filterMoviesDTO)
         {
             var moviesQueryable = context.Movies.AsQueryable();
@@ -107,6 +111,7 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpGet("{id}", Name = "getMovie")]
+        [EnableCors(PolicyName = "AllowAPIRequestIO")]
         public async Task<ActionResult<MovieDetailsDTO>> Get(int id)
         {
             var movie = await context.Movies
@@ -123,6 +128,7 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpPost]
+        [EnableCors(PolicyName = "AllowAPIRequestIO")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public async Task<ActionResult> Post([FromForm] MovieCreationDTO movieCreationDTO)
         {

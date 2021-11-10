@@ -1,39 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-light"style="background-color: #1A5276;">
     <div class="container-fluid">    
-    <a class="navbar-brand" href="#">Movies</a>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-camera-reels-fill" viewBox="0 0 16 16">
-      <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-      <path d="M9 6a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-      <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7z"/>
-    </svg>
+      <i class="bi bi-camera-reels-fill" style="color:black"></i>
+    <a class="navbar-brand" href="#">Moviestore</a>
+    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-aut
-      o">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+        <li class="nav-item ">
+          <a class="nav-link active" aria-current="page" routerLink="/movies">Home</a>
         </li>
         <li class="nav-item">
-         <a class="nav-link" href="#">Actors</a>
+         <a class="nav-link" href="#">Movies</a>
            </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
+           <li class="nav-item" >
+            <a class="nav-link" href="#">Actors</a>
+          </li>
+          
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" style="width:210px" placeholder="Search" aria-label="Search">
+          <span><i class="bi bi-search"></i></span>
+          
+        </form>
+       
+      
      
     </div>
     </div>
