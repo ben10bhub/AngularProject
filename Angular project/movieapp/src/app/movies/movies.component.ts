@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieDetailsService } from '../shared/movie-detail.service';
+import { MovieDetails } from '../shared/movie-detail.model';
 
 
 @Component({
@@ -8,12 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Moviescomponent implements OnInit {
 
-  constructor() { }
- 
+  constructor(public service:MovieDetailsService) { }
+ MovieList:MovieDetails[];
   ngOnInit(){
+    this.refreshMovieList();
+
     
   }
-
+refreshMovieList(){
+  this.service.getMovies().subscribe(data => this.MovieList = data)
+  console.log(this.MovieList)
+}
   
 
 }
