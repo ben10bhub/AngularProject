@@ -28,7 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
      ReactiveFormsModule,
   
   ],
-  providers: [HttpClient,MovieDetailsService],
+  providers: [HttpClient,MovieDetailsService,AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

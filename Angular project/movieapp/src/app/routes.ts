@@ -7,10 +7,10 @@ import { Moviescomponent } from './movies/movies.component';
 
 
 export const appRoutes: Routes=[
-{path: 'movies',component:Moviescomponent},
+{path: '',component:Moviescomponent},
   {path:'login',component:PeopleComponent,
   children:[{path:'',component:LoginComponent}]},
-  {path:'',redirectTo:'/home',pathMatch:'full'}
+  {path:'',redirectTo:'',pathMatch:'full'}
 ];
 
 

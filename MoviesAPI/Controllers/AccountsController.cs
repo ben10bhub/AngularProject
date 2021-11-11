@@ -15,10 +15,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 
 namespace MoviesAPI.Controllers
 {
     [ApiController]
+    [EnableCors(PolicyName = "AllowAPIRequestIO")]
     [Route("api/accounts")]
     public class AccountsController: ControllerBase
     {
@@ -57,7 +59,7 @@ namespace MoviesAPI.Controllers
                 return BadRequest(result.Errors);
             }
         }
-
+        [EnableCors(PolicyName = "AllowAPIRequestIO")]
         [HttpPost("Login")]
         public async Task<ActionResult<UserToken>> Login([FromBody] UserInfo model)
         {

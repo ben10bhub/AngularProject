@@ -33,9 +33,9 @@
 <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
  <div class="form-group">
  <label for="username">Username</label>
- <input type="text" formControlName="email"  id="form3Example3" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && formData.username.errors }" />
- <div *ngIf="submitted && formData.username.errors" class="invalid-feedback">
- <div *ngIf="formData.username.errors.required">email is required</div>
+ <input type="text" formControlName="emailid"  id="form3Example3" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && formData.emailid.errors }" />
+ <div *ngIf="submitted && formData.emailid.errors" class="invalid-feedback">
+ <div *ngIf="formData.emailid.errors.required">email is required</div>
  <label class="form-label" for="form3Example3">Email address</label>
  </div>
  </div>
@@ -63,12 +63,6 @@
  </div>
  <div *ngIf="error" class="alert alert-danger"></div>
 </form>
-<div class="text-center text-lg-start mt-4 pt-2">
-    <button type="button" class="btn btn-primary btn-lg"
-      style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-    <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-        class="link-danger">Register</a></p>
-  </div>
 
 </form>
 </div>
