@@ -1,26 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-import {map} from  'rxjs/operators'
+import { HttpClient,HttpHeaders} from '@angular/common/http';
 
-@Injectable()
+import {Validators, FormGroup } from '@angular/forms';
+
+@Injectable({
+  providedIn: 'root'})
 export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  login(emailid: string, password: string) {
-  return this.http.post<any>('https:localhost:44363/api/accounts/Login', { emailid, password })
-  .pipe(map(user => {
-  // login successful if there's a jwt token in the response
-  if (user && user.token) {
-  // store user details and jwt token in local storage to keep user logged in between page refreshes
-  localStorage.setItem('TokenInfo', JSON.stringify(user));
-  }
-  return user;
- }));
- }
+  readonly baseURL="https://localhost:44363/api/accounts"
 
- logout() {
- // remove user from local storage to log user out
- localStorage.removeItem('TokenInfo');
- }
+  login(formData: any) {
+    return this.http.post(this.baseURL + '/login', formData);
+  }
 }

@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { NgForm } from '@angular/forms';
 import { AuthenticationService } from 'src/app/shared/authentication.service';
+import { NgModule } from '@angular/core';
+
 
 @Component({
   selector: 'app-login',
@@ -10,50 +13,31 @@ import { AuthenticationService } from 'src/app/shared/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
- submitClick = false;
- submitted = false;
- returnUrl: string;
- error = '';
+  formModel = {
+    EmailAddress: '',
+    Password: ''
+  }
 
-
-  constructor(private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
+  constructor(
+    
     private router: Router,
-    private authenticationService: AuthenticationService) { }
+    private service: AuthenticationService) { }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-    emailid: ['', Validators.required],
-    password: ['', Validators.required]
-    });
-  
-  this.authenticationService.logout();
-  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
- }
- get formData() { return this.loginForm.controls; }
-
-
-  onLogin() {
-    this.submitted = true;
-   
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-    return;
-    }
-   
-    this.submitClick = true;
-    this.authenticationService.login(this.formData.emailid.value, this.formData.password.value)
-    .pipe(first())
-    .subscribe(
-    data => {
-    this.router.navigate([this.returnUrl]);
+    if (localStorage.getItem('token') != null)
+    this.router.navigateByUrl('');
+}
+onSubmit(form: NgForm) {
+  this.service.login(form.value).subscribe(
+    (res: any) => {
+      localStorage.setItem('token', res.token);
+      this.router.navigateByUrl('');
     },
-    error => {
-    this.error = error;
-    this.submitClick = false;
-    });
-    }
-   }
-
-
+    err => {
+    
+        console.log(err);
+    } );
+}
+}
+  
+ 

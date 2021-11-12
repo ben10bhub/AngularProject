@@ -7,11 +7,11 @@ import { LoginComponent } from './people/login/login.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { AuthenticationService } from './shared/authentication.service';
-import { AuthorizationCheckService } from './shared/authorization-check.service';
 import { Moviescomponent } from './movies/movies.component';
 import { MovieDetailsService } from './shared/movie-detail.service';
 import { PeopleComponent } from './people/people.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import '@angular/compiler';
 @NgModule({
   declarations: [
     AppComponent,

@@ -105,7 +105,8 @@ namespace MoviesAPI.Controllers
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var expiration = DateTime.UtcNow.AddYears(1);
+            var expiration = DateTime.UtcNow.AddMinutes(1);
+           
 
             JwtSecurityToken token = new JwtSecurityToken(
                 issuer: null,
