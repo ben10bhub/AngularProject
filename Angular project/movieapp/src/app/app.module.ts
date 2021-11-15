@@ -12,13 +12,20 @@ import { MovieDetailsService } from './shared/movie-detail.service';
 import { PeopleComponent } from './people/people.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import '@angular/compiler';
+import { MovieListComponent } from './movies/movie-list/movie-list.component';
+
+import { MovieItemsComponent } from './movies/movie-list/movie-items/movie-items.component';
+import { MovieDetailsComponent } from './movies/movie-detail/movie-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     Moviescomponent,
     LoginComponent,
-    PeopleComponent
+    PeopleComponent,
+    MovieListComponent,
+  MovieDetailsComponent,
+    MovieItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +33,7 @@ import '@angular/compiler';
      HttpClientModule,
      FormsModule,
      ReactiveFormsModule,
+     RouterModule
   
   ],
   providers: [HttpClient,MovieDetailsService,AuthenticationService],

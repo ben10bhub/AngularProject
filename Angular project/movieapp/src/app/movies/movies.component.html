@@ -1,11 +1,16 @@
-<div class="container">
-    <h1>Home</h1>
-    <table class="table">
-        <tr *ngFor="let md of MovieList">
-            <td>{{md.title}}</td>
-            <td>{{md.summary}}</td>
-            
-        </tr>
-    </table>
-    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-5">
+          <app-movie-list></app-movie-list>
+        </div>
+        <div class="col-md-7">
+          <app-movie-detail
+          *ngIf="selectedMovie; else infoText"
+          [movie]="selectedMovie"></app-movie-detail>
+          <ng-template #infoText>
+          </ng-template>
+        </div>
+      </div>
 

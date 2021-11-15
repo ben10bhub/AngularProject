@@ -104,9 +104,12 @@ namespace MoviesAPI.Controllers
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
+            
             var expiration = DateTime.UtcNow.AddMinutes(1);
-           
+            var UserID = await context.Users.Where(x => x.Email == userInfo.EmailAddress).Select(x => x.Id).ToListAsync();
+            var RoleID = await context.UserRoles.Where(x => x.UserId == UserID[0]).Select(x => x.RoleId).ToListAsync();
+            var Role = await context.Roles.Where(x => x.Id == RoleID[0]).Select(x => x.Name).ToListAsync();
+
 
             JwtSecurityToken token = new JwtSecurityToken(
                 issuer: null,
@@ -118,7 +121,8 @@ namespace MoviesAPI.Controllers
             return new UserToken()
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
-                Expiration = expiration
+                Expiration = expiration,
+               
             };
 
         }
