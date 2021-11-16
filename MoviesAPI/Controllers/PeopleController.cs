@@ -46,7 +46,7 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpGet("{id}", Name = "getPerson")]
-        public async Task<ActionResult<PersonDTO>> Get(int id)
+        public async Task<ActionResult<PersonDTO>> Get(string id)
         {
             var person = await context.People.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -84,8 +84,8 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
-        public async Task<ActionResult> Put(int id, [FromForm] PersonCreationDTO personCreationDTO)
+       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
+        public async Task<ActionResult> Put(string id, [FromBody] PersonCreationDTO personCreationDTO)
         {
             var personDB = await context.People.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -93,19 +93,19 @@ namespace MoviesAPI.Controllers
 
             personDB = mapper.Map(personCreationDTO, personDB);
 
-            if (personCreationDTO.Picture != null)
-            {
-                using (var memoryStream = new MemoryStream())
-                {
-                    await personCreationDTO.Picture.CopyToAsync(memoryStream);
-                    var content = memoryStream.ToArray();
-                    var extension = Path.GetExtension(personCreationDTO.Picture.FileName);
-                    personDB.Picture =
-                        await fileStorageService.EditFile(content, extension, containerName,
-                                                            personDB.Picture,
-                                                            personCreationDTO.Picture.ContentType);
-                }
-            }
+           // if (personCreationDTO.Picture != null)
+           // {
+            //    using (var memoryStream = new MemoryStream())
+               // {
+                 //   await personCreationDTO.Picture.CopyToAsync(memoryStream);
+                  //  var content = memoryStream.ToArray();
+                 //   var extension = Path.GetExtension(personCreationDTO.Picture.FileName);
+                   // personDB.Picture =
+                       // await fileStorageService.EditFile(content, extension, containerName,
+                                                  //          personDB.Picture,
+                                                      //      personCreationDTO.Picture.ContentType);
+              //  }
+           // }
 
             await context.SaveChangesAsync();
             return NoContent();
@@ -113,7 +113,8 @@ namespace MoviesAPI.Controllers
 
         [HttpPatch("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
-        public async Task<ActionResult> Patch(int id, [FromBody] JsonPatchDocument<PersonPatchDTO> patchDocument)
+        [EnableCors(PolicyName = "AllowAPIRequestIO")]
+        public async Task<ActionResult> Patch(string id, [FromBody] JsonPatchDocument<PersonPatchDTO> patchDocument)
         {
             if (patchDocument == null)
             {
@@ -148,7 +149,7 @@ namespace MoviesAPI.Controllers
         [HttpDelete("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         [DisableCors]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(string id)
         {
             var exists = await context.People.AnyAsync(x => x.Id == id);
             if (!exists)

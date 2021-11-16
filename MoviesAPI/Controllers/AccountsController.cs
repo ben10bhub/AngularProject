@@ -22,7 +22,7 @@ namespace MoviesAPI.Controllers
     [ApiController]
     [EnableCors(PolicyName = "AllowAPIRequestIO")]
     [Route("api/accounts")]
-    public class AccountsController: ControllerBase
+    public class AccountsController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -45,6 +45,7 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpPost("Create")]
+        [EnableCors(PolicyName = "AllowAPIRequestIO")]
         public async Task<ActionResult<UserToken>> CreateUser([FromBody] UserInfo model)
         {
             var user = new IdentityUser { UserName = model.EmailAddress, Email = model.EmailAddress };
@@ -77,6 +78,7 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpPost("RenewToken")]
+        [EnableCors(PolicyName = "AllowAPIRequestIO")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<UserToken>> Renew()
         {
@@ -104,10 +106,10 @@ namespace MoviesAPI.Controllers
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            
-            var expiration = DateTime.UtcNow.AddMinutes(1);
+
+            var expiration = DateTime.UtcNow.AddMinutes(10);
             var UserID = await context.Users.Where(x => x.Email == userInfo.EmailAddress).Select(x => x.Id).ToListAsync();
-            var RoleID = await context.UserRoles.Where(x => x.UserId == UserID[0]).Select(x => x.RoleId).ToListAsync();
+          var RoleID = await context.UserRoles.Where(x => x.UserId == UserID[0]).Select(x => x.RoleId).ToListAsync();
             var Role = await context.Roles.Where(x => x.Id == RoleID[0]).Select(x => x.Name).ToListAsync();
 
 
@@ -122,12 +124,15 @@ namespace MoviesAPI.Controllers
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 Expiration = expiration,
-               
+               UserID = UserID[0],
+               Role = Role[0]
+
             };
 
         }
 
         [HttpGet("Users")]
+        [EnableCors(PolicyName = "AllowAPIRequestIO")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public async Task<ActionResult<List<UserDTO>>> Get([FromQuery] PaginationDTO paginationDTO)
         {

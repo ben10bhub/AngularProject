@@ -9,6 +9,16 @@
     <Compile Remove="Migrations\20200214015041_TestDate.Designer.cs" />
     <Compile Remove="Migrations\20211103051519_Moviecolections.cs" />
     <Compile Remove="Migrations\20211103051519_Moviecolections.Designer.cs" />
+    <Compile Remove="Migrations\20211116083527_changeddb1.cs" />
+    <Compile Remove="Migrations\20211116083527_changeddb1.Designer.cs" />
+    <Compile Remove="Migrations\20211116084053_changeindatabase.cs" />
+    <Compile Remove="Migrations\20211116084053_changeindatabase.Designer.cs" />
+    <Compile Remove="Migrations\20211116090347_changeddb.cs" />
+    <Compile Remove="Migrations\20211116090347_changeddb.Designer.cs" />
+    <Compile Remove="Migrations\20211116090750_Changeddb.cs" />
+    <Compile Remove="Migrations\20211116090750_Changeddb.Designer.cs" />
+    <Compile Remove="Migrations\20211116093115_InitialMigrations.cs" />
+    <Compile Remove="Migrations\20211116093115_InitialMigrations.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\" />
     <Folder Include="wwwroot\people\" />
   </ItemGroup>

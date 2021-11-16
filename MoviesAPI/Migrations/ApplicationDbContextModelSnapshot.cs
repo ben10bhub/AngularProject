@@ -283,8 +283,8 @@ namespace MoviesAPI.Migrations
 
             modelBuilder.Entity("MoviesAPI.Entities.MoviesActors", b =>
                 {
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
+                    b.Property<string>("PersonId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
@@ -304,35 +304,35 @@ namespace MoviesAPI.Migrations
                     b.HasData(
                         new
                         {
-                            PersonId = 6,
+                            PersonId = "6",
                             MovieId = 2,
                             Character = "Tony Stark",
                             Order = 1
                         },
                         new
                         {
-                            PersonId = 7,
+                            PersonId = "7",
                             MovieId = 2,
                             Character = "Steve Rogers",
                             Order = 2
                         },
                         new
                         {
-                            PersonId = 6,
+                            PersonId = "6",
                             MovieId = 3,
                             Character = "Tony Stark",
                             Order = 1
                         },
                         new
                         {
-                            PersonId = 7,
+                            PersonId = "7",
                             MovieId = 3,
                             Character = "Steve Rogers",
                             Order = 2
                         },
                         new
                         {
-                            PersonId = 5,
+                            PersonId = "5",
                             MovieId = 4,
                             Character = "Dr. Ivo Robotnik",
                             Order = 1
@@ -341,10 +341,8 @@ namespace MoviesAPI.Migrations
 
             modelBuilder.Entity("MoviesAPI.Entities.Person", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Biography")
                         .HasColumnType("nvarchar(max)");
@@ -367,19 +365,19 @@ namespace MoviesAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 5,
+                            Id = "5",
                             DateOfBirth = new DateTime(1962, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Jim Carrey"
                         },
                         new
                         {
-                            Id = 6,
+                            Id = "6",
                             DateOfBirth = new DateTime(1965, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Robert Downey Jr."
                         },
                         new
                         {
-                            Id = 7,
+                            Id = "7",
                             DateOfBirth = new DateTime(1981, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Chris Evans"
                         });

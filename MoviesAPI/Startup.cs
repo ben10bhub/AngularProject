@@ -97,11 +97,11 @@ namespace MoviesAPI
 
             app.UseAuthorization();
 
-            app.UseCors();
+            //app.UseCors();
 
             // This policy would be applied at the Web API level
-            //app.UseCors(builder => 
-            //builder.WithOrigins("https://www.apirequest.io").WithMethods("GET", "POST").AllowAnyHeader());
+            app.UseCors(builder => 
+            builder.WithOrigins("https://www.apirequest.io").WithMethods("GET", "POST").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {

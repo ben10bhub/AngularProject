@@ -47,11 +47,11 @@ namespace MoviesAPI.Controllers
         {
             var top = 6;
             var today = DateTime.Today;
-            var upcomingReleases = await context.Movies
-                .Where(x => x.ReleaseDate > today)
-                .OrderBy(x => x.ReleaseDate)
-                .Take(top)
-                .ToListAsync();
+            //var upcomingReleases = await context.Movies
+              //  .Where(x => x.ReleaseDate > today)
+              //  .OrderBy(x => x.ReleaseDate)
+                //.Take(top)
+                //.ToListAsync();
 
             var inTheaters = await context.Movies
                 .Where(x => x.InTheaters)
@@ -60,7 +60,7 @@ namespace MoviesAPI.Controllers
 
             var result = new List<MovieDTO>();
             result = mapper.Map<List<MovieDTO>>(inTheaters);
-           // result.UpcomingReleases = mapper.Map<List<MovieDTO>>(upcomingReleases);
+           //result.UpcomingReleases = mapper.Map<List<MovieDTO>>(upcomingReleases);
 
             return result;
         }

@@ -8,7 +8,7 @@ namespace MoviesAPI.Entities
 {
     public class Person
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
         [StringLength(120)]
         public string Name { get; set; }

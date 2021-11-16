@@ -28,9 +28,9 @@ namespace MoviesAPI
         private void SeedData(ModelBuilder modelBuilder)
         {
 
-            var jimCarrey = new Person() { Id = 5, Name = "Jim Carrey", DateOfBirth = new DateTime(1962, 01, 17) };
-            var robertDowney = new Person() { Id = 6, Name = "Robert Downey Jr.", DateOfBirth = new DateTime(1965, 4, 4) };
-            var chrisEvans = new Person() { Id = 7, Name = "Chris Evans", DateOfBirth = new DateTime(1981, 06, 13) };
+            var jimCarrey = new Person() { Id = "5", Name = "Jim Carrey", DateOfBirth = new DateTime(1962, 01, 17) };
+            var robertDowney = new Person() { Id = "6", Name = "Robert Downey Jr.", DateOfBirth = new DateTime(1965, 4, 4) };
+            var chrisEvans = new Person() { Id = "7", Name = "Chris Evans", DateOfBirth = new DateTime(1981, 06, 13) };
 
             modelBuilder.Entity<Person>()
                 .HasData(new List<Person>

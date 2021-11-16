@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace MoviesAPI.DTOs
 {
-    public class ActorDTO
+    public class MoviesActorDTO
     {
+        public int MovieId { get; set; }
         public string PersonId { get; set; }
         public string Character { get; set; }
-        public string PersonName { get; set; }
+        public string Title { get; set; }
+        public string Poster { get; set; }
     }
 }
